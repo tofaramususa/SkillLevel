@@ -1,5 +1,7 @@
+"use client"
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from 'zod';
 
 const formSchema = z.object({
@@ -31,7 +33,8 @@ export function EmailForm() {
           {...register('username')}
         />
         {errors.username && (
-          <div>{errors.username.message}</div>
+          // Safe to cast `errors.username` to `FieldError` and access `message`
+          <div>{(errors.username as { message?: string }).message}</div>
         )}
       </div>
       <button type="submit">Submit</button>

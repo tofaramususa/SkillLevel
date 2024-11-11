@@ -6,22 +6,21 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useState } from "react"
-import { RainbowButton } from "@/components/ui/rainbowButton"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+// import { Button } from "./ui/button"
 // import confettiFunc from "@/components/confetti"
 
 // Updated schema to validate an email address
 const formSchema = z.object({
-  email: z.string().email("Invalid email address"), // Checks for valid email format
+  email: z.string().email("Please enter a valid email address."), // Checks for valid email format
 })
 
 export function EmailForm() {
@@ -50,12 +49,12 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
 	// Check if response is successful
 	if (response.ok) {
 	//   onSuccess() // Trigger external action on success
-		alert("Successfully stored")
+		console.log("Successfully stored")
 	} else {
-	  alert("Failed to submit email")
+	  console.log("Failed to submit email")
 	}
   } catch  {
-	alert("Error submitting email")
+	console.log("Error submitting email")
   } finally {
 	setIsLoading(false) // Hide spinner
   }
@@ -63,23 +62,22 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center justify-center h-screen space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center justify-center space-y-8 flex-col">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-left">Email</FormLabel>
+            <FormItem className="md:w-1/2 w-full">
               <FormControl>
-                <Input className="bg-white" placeholder="Enter your email here"  {...field} />
+                <Input className="bg-black w-full text-white" placeholder="Enter your email here"  {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="lg:text-sm" />
             </FormItem>
           )}
         />
-       <RainbowButton className="text-lg text-black" type="submit" disabled={isLoading}>
+       <Button className=" text-white bg-accent-gradient" type="submit" disabled={isLoading}>
           {isLoading ? <Spinner /> : "Join the waitlist"} {/* Show spinner when loading */}
-        </RainbowButton>
+        </Button>
       </form>
     </Form>
   )

@@ -10,7 +10,7 @@ export default function Waitlist() {
 
 	return (
 		<div>
-		<div className="bg-white mb-5 pt-12 pb-11">
+		<div className="bg-white pt-12">
 		<Container className="pt-[6.4rem]">
 			{/* The will be a really cool background color, image or animation */}
 			{/* There will be a logo at the top left corner */}
@@ -23,6 +23,9 @@ export default function Waitlist() {
 					ease={80}
 					color={"#000000"}
 					refresh
+					vx={0.10}
+					vy={0.10}
+					staticity={1000}
 			/>
 			<HeroTitle className="animate-fade-in font-semibold [--animation-delay:200ms] opacity-0 translate-y-[-1rem]">
 					Time to change what your kids are consuming online. 
@@ -35,27 +38,27 @@ export default function Waitlist() {
 			</Hero>
 		</Container>
 		</div>
-					<Particles 
-					className="absolute inset-0"
-					quantity={500}
-					ease={80}
-					color={"#FFFFFF"}
-					refresh
-			/>
-			<Hero className="bg-black pt-11 max-w-[120rem] mx-auto">
+		<Container className="pt-[6.4rem]">
+			<Hero className="max-w-[120rem] mx-auto">
 					<HeroSmallerTitle className="text-white animate-fade-in [--animation-delay:200ms] opacity-0 translate-y-[-1rem]">
 					Be the first to access our skill-building platform
 					</HeroSmallerTitle>
 					<HeroSmallerTitle className="animate-fade-in [--animation-delay:200ms] opacity-0 translate-y-[-1rem]">
 					Join our waitlist.
 					</HeroSmallerTitle>
-			{/* Then there will be a card component */}
-				{/* Inside the card there will be header 2 text saying join us  */}
-				{/* The there will be a button at the bottom saying email address*/}
 			<EmailForm />
-			{/* There will be a partners Component */}
-				{/* Then copyright information saying skill level*/}
-		</Hero>
+					<Particles 
+					className="absolute inset-0 z-0"
+					quantity={500}
+					ease={80}
+					color={"#FFFFFF"}
+					refresh
+					vx={0.10}
+					vy={0.10}
+					staticity={1000}
+					/>
+			</Hero>
+		</Container>
 		</div>
 	)
 }

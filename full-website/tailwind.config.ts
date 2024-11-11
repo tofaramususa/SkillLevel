@@ -30,10 +30,10 @@ const config: Config = {
 			white: "#fff",
 			"off-white": "#f7f8f8",
 			"transparent-white": "rgba(255, 255, 255, 0.08)",
-			background: "#f7f8f8",
-			grey: "#858699",    
+			background: "#EDF4F2",
+			grey: "#CEE6F2",    
 			"grey-dark": "#222326",
-			"primary-text": "#000000",
+			"primary-text": "#b4bcd0",
 	  },
 	  spacing: {
 		0: "0",

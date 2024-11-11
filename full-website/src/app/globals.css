@@ -5,10 +5,15 @@
 @layer base {
   :root {
     --navigation-height: 4.8rem;
+	--color-1: 0 100% 63%;
+	--color-2: 270 100% 63%;
+	--color-3: 210 100% 63%;
+	--color-4: 195 100% 63%;
+	--color-5: 90 100% 63%;
   }
 
   html {
-    @apply bg-background font-sans text-off-white;
+    @apply bg-black font-sans text-off-white;
     font-size: 62.5%;
   }
 }
@@ -23,4 +28,20 @@
 	  background-clip: text;
 	  color: transparent;
 	}
+
+	.text-2-gradient {
+		background: #121FCF;
+		background: linear-gradient(to right, #121FCF 0%, #CF1512 100%);
+		background-clip: text;
+		color: transparent;
+
+	}
+
+	.text-3-gradient {
+		background: #FF7E00;
+		background: linear-gradient(to right, #FF7E00 0%, #FFD700 100%);
+		background-clip: text;
+		color: transparent;
+	}
+	
 }  

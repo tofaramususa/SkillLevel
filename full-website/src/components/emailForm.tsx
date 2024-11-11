@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { RainbowButton } from "@/components/ui/rainbowButton"
 import {
   Form,
   FormControl,
@@ -63,26 +63,23 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center justify-center h-screen space-y-8">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="text-left">Email</FormLabel>
               <FormControl>
-                <Input placeholder="you@example.com" {...field} />
+                <Input className="bg-white" placeholder="Enter your email here"  {...field} />
               </FormControl>
-              <FormDescription>
-                Please enter a valid email address.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-       <Button type="submit" disabled={isLoading}>
-          {isLoading ? <Spinner /> : "Submit"} {/* Show spinner when loading */}
-        </Button>
+       <RainbowButton className="text-lg text-black" type="submit" disabled={isLoading}>
+          {isLoading ? <Spinner /> : "Join the waitlist"} {/* Show spinner when loading */}
+        </RainbowButton>
       </form>
     </Form>
   )

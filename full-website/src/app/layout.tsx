@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import {  Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk(
+  { 
+    subsets: ["latin"],
+    weights: [400, 500, 600, 700],
+  
+  },
+
+);
 
 export const metadata: Metadata = {
   title: "Skill Level",
@@ -17,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 		{/* I will need to place the logo here for all pages at the top left corner */}
-		<body>
+		<body className={spaceGrotesk.className}>
         {children}
       </body>
     </html>

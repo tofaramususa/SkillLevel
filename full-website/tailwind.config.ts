@@ -27,13 +27,19 @@ const config: Config = {
 	  },
 	  colors: {
 			transparent: "transparent",
-			white: "#fff",
+			white: "#FFFFFF",
 			"off-white": "#f7f8f8",
 			"transparent-white": "rgba(255, 255, 255, 0.08)",
 			background: "#EDF4F2",
 			grey: "#CEE6F2",    
 			"grey-dark": "#222326",
+			"black": "#000000",
 			"primary-text": "#b4bcd0",
+			"color-1": "hsl(var(--color-1))",
+			"color-2": "hsl(var(--color-2))",
+			"color-3": "hsl(var(--color-3))",
+			"color-4": "hsl(var(--color-4))",
+			"color-5": "hsl(var(--color-5))",
 	  },
 	  spacing: {
 		0: "0",
@@ -52,13 +58,13 @@ const config: Config = {
 		"navigation-height": "var(--navigation-height)",
 	  },
 	  backgroundImage: {
-		"primary-gradient": "linear-gradient(92.88deg, #455eb5 9.16%, #5643cc 43.89%, #673fd7 64.72%)",
-		"secondary-gradient": "linear-gradient(90deg, #3d3d3d 0%, #5a5a5a 100%)",
-		"accent-gradient": "linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)",
-		"dark-gradient": "linear-gradient(180deg, #1a1a1a 0%, #2c2c2c 100%)",
-		"light-gradient": "linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 100%)",
-		"page-gradient":
-        "radial-gradient(ellipse 80% 50% at 50% -20%,rgba(120,119,198,0.3), transparent)",
+		// "primary-gradient": "linear-gradient(92.88deg, #455eb5 9.16%, #5643cc 43.89%, #673fd7 64.72%)",
+		// "secondary-gradient": "linear-gradient(90deg, #3d3d3d 0%, #5a5a5a 100%)",
+		// "accent-gradient": "linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)",
+		// "dark-gradient": "linear-gradient(180deg, #1a1a1a 0%, #2c2c2c 100%)",
+		// "light-gradient": "linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 100%)",
+		// "page-gradient":
+        // "radial-gradient(ellipse 80% 50% at 50% -20%,rgba(120,119,198,0.3), transparent)",
 	  },
 	  boxShadow: {
 		primary: "rgb(80 63 205 / 50%) 0px 1px 40px",
@@ -71,9 +77,14 @@ const config: Config = {
 			from: { opacity: "0", transform: "translateY(-10px)"},
 			to: { opacity: "1", y: "none"},
     	},
+		rainbow: {
+			"0%": { "background-position": "0%" },
+			"100%": { "background-position": "200%" },
+		  },
 	},
 	animation: {
 		"fade-in": "fade-in 1000ms var(--animation-delay, 0) ease forwards",
+		rainbow: "rainbow var(--speed, 2s) infinite linear",
 		},
 	},
   plugins: [],

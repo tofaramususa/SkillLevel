@@ -2,6 +2,7 @@ import classNames from "classnames";
 
 interface HeroProps {
   children: React.ReactNode;
+  className?: string;
 }
 
 interface HeroElementProps {
@@ -13,7 +14,7 @@ export const HeroTitle = ({ children, className }: HeroElementProps) => {
   return (
     <h1
       className={classNames(
-        "text-grey-dark my-12 text-6xl md:text-8xl",
+        "text-grey-dark tracking-tighter my-12 text-6xl md:text-8xl",
         className
       )}
     >
@@ -27,7 +28,7 @@ export const HeroSmallerTitle = ({ children, className }: HeroElementProps) => {
 	return (
 	  <h1
 		className={classNames(
-		  "text-grey-dark my-6 text-4xl md:text-4xl",
+		  " my-6 tracking-tighter text-4xl md:text-4xl",
 		  className
 		)}
 	  >
@@ -41,7 +42,7 @@ export const HeroSubtitle = ({ children, className }: HeroElementProps) => {
   return (
     <p
       className={classNames(
-        "mb-12 text-lg text-grey-dark md:text-xl",
+        "mb-12 text-2-gradient text-lg text-grey-dark md:text-xl",
         className
       )}
     >
@@ -50,6 +51,6 @@ export const HeroSubtitle = ({ children, className }: HeroElementProps) => {
   );
 };
 
-export const Hero = ({ children }: HeroProps) => {
-  return <div className="text-center">{children}</div>;
+export const Hero = ({ children, className }: HeroProps) => {
+  return <div className={classNames("text-center pb-12", className)}>{children}</div>;
 };

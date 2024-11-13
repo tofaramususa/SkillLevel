@@ -5,7 +5,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -15,16 +15,13 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-// import { Button } from "./ui/button"
-// import confettiFunc from "@/components/confetti"
+import confettiFunc from "@/components/confetti" // Uncomment if confetti animation is desired
 
-// Updated schema to validate an email address
 const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address."), // Checks for valid email format
+  email: z.string().email("Please enter a valid email address."),
 })
 
 export function EmailForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,36 +29,49 @@ export function EmailForm() {
     },
   })
 
-// Loading state for the spinner
-const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitted, setSubmitted] = useState(false) // New state to toggle form display
 
-// Handler for form submission
-async function onSubmit(values: z.infer<typeof formSchema>) {
-  setIsLoading(true) // Show spinner
-  try {
-	// Send POST request with email
-	const response = await fetch("/api/waitlist", {
-	  method: "POST",
-	  headers: { "Content-Type": "application/json" },
-	  body: JSON.stringify({ email: values.email }),
-	})
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
 
-	// Check if response is successful
-	if (response.ok) {
-	//   onSuccess() // Trigger external action on success
-		console.log("Successfully stored")
-	} else {
-	  console.log("Failed to submit email")
-	}
-  } catch  {
-	console.log("Error submitting email")
-  } finally {
-	setIsLoading(false) // Hide spinner
+	setTimeout(async () => {
+		try {
+		  const response = await fetch("/api/waitlist", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ email: values.email }),
+		  })
+  
+		  if (response.ok) {
+			setSubmitted(true) // Set submitted state to true on success
+		  } else {
+			console.log("Failed to submit email")
+		  }
+		} catch {
+		  console.log("Error submitting email")
+		} finally {
+		  setIsLoading(false) // Stop loading spinner after the fetch is done
+		}
+	  }, 500) // 2 seconds delay before making the fetch request
   }
-}
 
+  useEffect(() => {
+    if (submitted) {
+      confettiFunc() // Trigger confetti animation when the form is successfully submitted
+    }
+  }, [submitted]) // Dependency on 'submitted' state
+
+  // Conditional rendering based on `submitted` state
   return (
-    <Form {...form}>
+    <div>
+      {submitted ? ( 
+        <div className="text-center text-3-gradient space-y-4">
+          <h2 className="text-xl font-semibold">You're In!</h2>
+          <p className="text-sm">We will be in touch shortly.</p>
+        </div>
+      ) : (
+        <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center justify-center space-y-8 flex-col">
         <FormField
           control={form.control}
@@ -80,9 +90,18 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
         </Button>
       </form>
     </Form>
+      )}
+    </div>
   )
 }
 
 function Spinner() {
-	return <div className="spinner-border animate-spin w-4 h-4 border-2 border-t-transparent rounded-full"></div>
+	return (
+	  
+<div role="status">
+  <span className="spin-border">Submitting...</span>
+</div>
+
+	)
   }
+  

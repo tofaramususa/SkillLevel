@@ -35,6 +35,8 @@ export function EmailForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
 
+	let working = false;
+
 	setTimeout(async () => {
 		try {
 		  const response = await fetch("/api/waitlist", {
@@ -42,9 +44,9 @@ export function EmailForm() {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ email: values.email }),
 		  })
-  
 		  if (response.ok) {
 			setSubmitted(true) // Set submitted state to true on success
+			working = true;
 		  } else {
 			console.log("Failed to submit email")
 		  }
@@ -53,7 +55,16 @@ export function EmailForm() {
 		} finally {
 		  setIsLoading(false) // Stop loading spinner after the fetch is done
 		}
-	  }, 500) // 2 seconds delay before making the fetch request
+		fetch("/api/notify", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+			email: values.email,
+			success: working ? true : false, // Ternary to set success based on response.ok
+			}),
+		}).catch((err) => console.error("Error sending notification:", err));
+	  }, 0) // 2 seconds delay before making the fetch request
+	  		// Non-blocking fetch call to /api/notify
   }
 
   useEffect(() => {
@@ -66,8 +77,8 @@ export function EmailForm() {
   return (
     <div>
       {submitted ? ( 
-        <div className="text-center text-3-gradient space-y-4">
-          <h2 className="text-xl font-semibold">You're In!</h2>
+        <div className="text-center text-3-gradient space-y-4 animate-fade-in [--animation-delay:200ms] opacity-0 translate-y-[-1rem]">
+          <h2 className="text-xl font-semibold">You&apos;re In!</h2>
           <p className="text-sm">We will be in touch shortly.</p>
         </div>
       ) : (

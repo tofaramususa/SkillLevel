@@ -2,8 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import { ArrowDownTrayIcon, HeartIcon } from 'react-native-heroicons/solid'
-import { storeColors } from '../theme';
-import StarRating from 'react-native-star-rating';
+import { storeColors } from '@/theme';
 
 export default function GameCard({game}) {
     const [isFavourite, setFavourite] = useState(false);
@@ -22,15 +21,15 @@ export default function GameCard({game}) {
             </TouchableOpacity>
         </View>
         <View className="space-y-1">
-            <StarRating
+            {/* <StarRating
                 disabled={true}
                 starSize={15}
                 containerStyle={{width: 90}}
                 maxStars={5}
                 rating={game.stars}
-                emptyStar={require('../assets/images/emptyStar.png')}
-                fullStar={require('../assets/images/fullStar.png')}
-            />
+                emptyStar={require('@/assets/images/emptyStar.png')}
+                fullStar={require('@/assets/images/fullStar.png')}
+            /> */}
             <Text className="text-xl font-bold text-gray-300">
                 {game.title}
             </Text>

@@ -18,6 +18,7 @@ export default function TabLayout() {
       tabBarStyle: {
         display: 'none',
       },
+	  headerShown: false 
     }}>
       <Tabs.Screen
         name="index"

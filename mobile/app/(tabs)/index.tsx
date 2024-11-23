@@ -100,7 +100,7 @@ export default function StoreScreen() {
           <View className="mt-3 space-y-4">
             <Text
               style={{color: storeColors.text}}
-              className="ml-4 text-3xl font-bold"
+              className="ml-4 text-3xl font-bold mb-5"
             >
               Browse Games
             </Text>

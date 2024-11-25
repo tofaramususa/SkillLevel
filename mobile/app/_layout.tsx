@@ -18,8 +18,6 @@ import "../global.css";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [user, setUser] = useState<User | null>(null);
-
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('@/assets/fonts/SpaceMono-Regular.ttf'),
@@ -28,18 +26,9 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+      // Go to login page instead of home
+      router.replace('/SignUpLogin/SignUpLogin');
     }
-    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
-      console.log('user', user)
-      setUser(user);
-      if (user) {
-        router.replace('/(tabs)/home');
-      } else {
-        router.replace('/SignUpLogin/SignUpLogin');
-      }
-    });
-    return () => unsubscribe();
-
   }, [loaded]);
 
   if (!loaded) {
@@ -51,7 +40,6 @@ export default function RootLayout() {
       <Stack screenOptions={{headerShown: false}}>
           <Stack.Screen name="SignUpLogin/SignUpLogin" options={{ headerShown:false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          {/* <Stack.Screen name="+not-found" /> */}
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

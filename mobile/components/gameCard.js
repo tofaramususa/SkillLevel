@@ -8,8 +8,8 @@ export default function GameCard({game}) {
     const [isFavourite, setFavourite] = useState(false);
   return (
     <View className="mr-4 relative">
-      <Image source={game.image} className="w-80 h-60 rounded-3xl"/>
-      <LinearGradient colors={['transparent', 'rgba(0, 0, 0, 0.6)']} 
+      <Image source={game.image} className="w-80 h-80 rounded-3xl"/>
+      <LinearGradient colors={['transparent', 'rgba(0, 0, 0, 0.4)']} 
         className="absolute p-4 h-full w-full flex justify-between rounded-3xl">
         <View className="flex-row justify-end">
             <TouchableOpacity
@@ -30,7 +30,7 @@ export default function GameCard({game}) {
                 emptyStar={require('@/assets/images/emptyStar.png')}
                 fullStar={require('@/assets/images/fullStar.png')}
             /> */}
-            <Text className="text-xl font-bold text-gray-300">
+            <Text className="text-xl font-bold text-gray-200">
                 {game.title}
             </Text>
             <View className="flex-row items-center space-x-2">

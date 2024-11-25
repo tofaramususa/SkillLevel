@@ -6,39 +6,40 @@ import {ArrowDownTrayIcon, Bars3CenterLeftIcon, BellIcon} from 'react-native-her
 import {storeColors} from '@/theme';
 import GradientButton from '@/components/gradientButton'
 import GameCard from '@/components/gameCard'
+import { useRouter } from 'expo-router'
 
 
 /////// subscribe for more videos like this :)
 
-const categories = ['Action', 'Family', 'Puzzle', 'Adventure', 'Racing', 'Education', 'Others'];
+const categories = ['Dance', 'Fitness', 'Art', 'Puzzles', 'DIY', 'Robotics', 'Maze'];
 const featured = [
   {
       id: 1,
-      title: 'Zooba',
-      image: require('@/assets/images/zooba.png'),
+      title: 'Cultural Dance Intro',
+      image: require('@/assets/images/dance2.png'),
       downloads: '200k',
       stars: 4
   },
   {
       id: 2,
-      title: 'Subway Surfer',
-      image: require('@/assets/images/subway.png'),
+      title: 'Art Adventures',
+      image: require('@/assets/images/drawing.jpg'),
       downloads: '5M',
       stars: 4
   },
   {
       id: 3,
-      title: 'Free Fire',
-      image: require('@/assets/images/freeFire.png'),
+      title: 'Fitness Fun',
+      image: require('@/assets/images/fitness.jpg'),
       downloads: '100M',
       stars: 3
   },
   
   {
       id: 4,
-      title: "Alto's Adventure",
-      image: require('@/assets/images/altosAdventure.png'),
-      downloads: '20k',
+      title: "Problem Solving Puzzles",
+      image: require('@/assets/images/solving.png'),
+      downloads: '20k views',
       stars: 4
   },
 ]
@@ -46,48 +47,56 @@ const featured = [
 const games = [
   {
       id: 1,
-      title: 'Shadow Fight',
-      image: require('@/assets/images/shadowFight.png'),
-      downloads: '20M',
+      title: 'Puzzles Path',
+      image: require('@/assets/images/puzzles1.jpg'),
+      downloads: '20,000 views',
       stars: 4.5
   },
   {
-      id: 2,
-      title: 'Valor Arena',
-      image: require('@/assets/images/valorArena.png'),
-      downloads: '10k',
-      stars: 3.4
+	  id: 2,
+	  title: 'Nature Discovery',
+	  image: require('@/assets/images/nature.jpg'),
+	  downloads: '80k views',
+	  stars: 4.6
   },
   {
       id: 3,
-      title: 'Frag',
-      image: require('@/assets/images/frag.png'),
-      downloads: '80k',
-      stars: 4.6
+      title: 'The Ayyalah',
+      image: require('@/assets/images/dance2.png'),
+      downloads: '10,000 views',
+      stars: 3.4
   },
   {
       id: 4,
-      title: "Zooba Wildlife",
-      image: require('@/assets/images/zoobaGame.png'),
-      downloads: '40k',
+      title: "Culinary Creators",
+      image: require('@/assets/images/cook.png'),
+      downloads: '40k views',
       stars: 3.5
   },
   {
       id: 4,
-      title: "Clash of Clans",
+      title: "The Yolla",
       image: require('@/assets/images/clashofclans.png'),
-      downloads: '20k',
+      downloads: '20k views',
       stars: 4.2
   },
 ];
 
 export default function StoreScreen() {
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState('Action');
    const [selectedGame, setSelectedGame] = useState(null);
+
+  const handleGamePress = (game) => {
+    if (game.title === 'Cultural Dance Intro' || game.title === 'The Ayyalah') {
+      router.push('/(tabs)/home/pageDetails');
+    }
+  };
+
   return (
     <LinearGradient
       colors={['rgba(58, 131, 244,0.4)', 'rgba(9, 181, 211, 0.4)']}
-      className="w-full flex-1"
+      className="rounded w-full flex-1"
     >
       <SafeAreaView>
         <View className="container">
@@ -99,10 +108,15 @@ export default function StoreScreen() {
           {/* categories */}
           <View className="mt-3 space-y-4">
             <Text
-              style={{color: storeColors.text}}
-              className="ml-4 text-3xl font-bold mb-5"
+              style={{
+                marginLeft: 16,
+                fontSize: 24,
+                fontWeight: 'bold',
+                marginBottom: 20,
+                color: storeColors.text
+              }}
             >
-              Browse Games
+            Skill Level
             </Text>
             <View className="pl-4">
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -111,7 +125,7 @@ export default function StoreScreen() {
                     if(cat==activeCategory){
                       // show gradient category
                       return (
-                        <GradientButton key={cat} containerClass="mr-2" value={cat} />
+                        <GradientButton key={cat} containerClass="rounded-3xl mr-2" value={cat} />
                       )
                     }else{
                       // show normal category
@@ -138,29 +152,30 @@ export default function StoreScreen() {
           <View className="mt-3 space-y-4">
                 <Text
                   style={{color: storeColors.text}}
-                  className="ml-4 text-lg font-bold">
-                    Featured Games
+                  className="ml-4 text-lg font-bold mb-3">
+                    Featured Adventures
                   </Text>
-                <View className="pl-4">
+                <View className="pl-4 mb-3">
                   <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {
-                      featured.map((item, index)=>{
+                      featured.map((item, index) => {
                         return (
-                          <GameCard key={index} game={item} />
+                          <TouchableOpacity key={index} onPress={() => handleGamePress(item)}>
+                            <GameCard game={item} />
+                          </TouchableOpacity>
                         )
                       })
                     }
                   </ScrollView>
                 </View>
           </View>
-
           {/* top action games list */}
           <View className="mt-3">
             <View className="flex-row justify-between items-center mb-2">
               <Text
                   style={{color: storeColors.text}}
                   className="ml-4 text-lg font-bold">
-                    Top Action Games
+                    Top Featured Adventures
               </Text>
               <TouchableOpacity className="mr-4">
                 <Text className="text-blue-600 font-bold">
@@ -177,7 +192,10 @@ export default function StoreScreen() {
                     <TouchableOpacity 
                     style={{backgroundColor: bg}}
                     className="mx-4 p-2 mb-2 flex-row rounded-3xl"
-                    onPress={()=> setSelectedGame(game.id)}
+                    onPress={() => {
+                      setSelectedGame(game.id);
+                      handleGamePress(game);
+                    }}
                     key={index}>
                       <Image source={game.image} style={{width: 80, height: 80}}
                         className="rounded-2xl" />
@@ -203,7 +221,7 @@ export default function StoreScreen() {
                         </View>
                       </View>
                       <View className="flex justify-center items-center">
-                        <GradientButton value="play" buttonClass="py-2 px-5" />
+                        <GradientButton value="PLAY" buttonClass="round-3xl py-2 px-5" />
                       </View>
                     </TouchableOpacity>
                   )

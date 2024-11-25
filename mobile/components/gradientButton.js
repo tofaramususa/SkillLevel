@@ -10,8 +10,8 @@ export default function GradientButton(props) {
         start={{x: 0.1, y: 0.2}}
         className={`rounded-full ${props.containerClass}`}
     >
-        <TouchableOpacity className={`p-3 px-4 ${props.buttonClass}`}>
-            <Text className="text-white font-bold">
+        <TouchableOpacity className={`p-3 px-4 rounded-full ${props.buttonClass}`}>
+            <Text className="text-white font-bold rounded-full">
                 {props.value}
             </Text>
         </TouchableOpacity>

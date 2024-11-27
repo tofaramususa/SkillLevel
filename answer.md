@@ -180,5 +180,37 @@ The generated response is streamed back to the user, including links to supporti
 
 # Task 2 Solution
 
+I’m particularly proud of **Aqlan**, an AI research assistant I co-developed for the **Abu Dhabi Executive Government Office**. Aqlan—meaning "intelligent" in Arabic—was designed to address challenges in managing government workflows, such as handling opinion requests and conducting strategic research. 
+
+https://github.com/tofaramususa/Aqlan
+
+### **What Aqlan Achieved**
+Aqlan transformed how government teams managed their daily tasks:  
+- **Streamlining Opinion Requests**: Departments used Aqlan to automate the preparation and analysis of opinion requests. By centralizing document retrieval and ensuring context was preserved, teams were able to focus on decision-making rather than routine tasks.  
+- **Supporting Research and Benchmarking**: Aqlan made research more efficient by automatically retrieving and summarizing relevant information from internal repositories and external sources. This reduced repetitive work and allowed staff to concentrate on deriving insights.  
+- **Collaborative Workflows**: The system fostered better coordination across departments by providing a standardized way to handle information and ensure consistency in responses.  
+
+---
+
+### **Technical Highlights**
+- **AI-Powered Routing**: A graph-based workflow using **LangGraph** and **LangChain** frameworks enabled dynamic routing of tasks like document retrieval, web research, and recommendation generation.  
+- **State Management**: The system maintained context across multi-step processes, allowing for seamless, context-aware interactions.  
+- **Document Analysis**: Using **vector stores** for document retrieval, Aqlan assessed relevance and summarized key points for decision-makers.  
+- **Arabic Language Support**: Designed with bilingual capabilities, Aqlan processed Arabic and English documents, supporting inclusive workflows across departments.  
+
+---
+
+### **Post-Development Consultancy**
+After deploying Aqlan, I worked closely with the Abu Dhabi Executive Office to ensure effective integration into their workflows:  
+- **Training and Support**: Conducted training sessions to help staff use Aqlan effectively and integrate it into their daily routines.  
+- **Customizations**: Worked on department-specific adjustments, tailoring the system to their unique needs.  
+- **Scalability Advice**: Provided recommendations for extending Aqlan’s capabilities, such as incorporating additional data sources or refining its analytical tools.  
+
+---
+
+### **Why It Stands Out**
+Aqlan is more than a technical project—it represents a practical solution to real challenges. It was rewarding to see how it simplified day-to-day processes, improved collaboration, and empowered teams to focus on higher-value tasks. Creating something that could genuinely support their work and enhance efficiency is what makes this project a highlight of my career.  
+
+*Explore the project here: [Aqlan GitHub Repository](https://github.com/tofaramususa/Aqlan).*
 
 
